@@ -44,4 +44,4 @@ if __name__ == '__main__':
     for i in range(20): # exceed its maximum size
         cq.enqueue(i)
     while not cq.is_empty():
-        print(cq.dequeue(), end=" ")
+        print(cq.dequeue(), end=" ") # as you will see, circular queue maximum contain number is its predefined container's length() - 1
