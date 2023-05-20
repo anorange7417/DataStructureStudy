@@ -113,28 +113,21 @@ public:
         printf("\nSearch by dfs(using stack container), starting from vertex %d.\n",beginV);
         stack<int> mystack;
         int current = beginV;
-        int explored = 1;
         mystack.push(current);
         checklist[current] = 1;
-        printf("%d ",current);
         while(!mystack.empty())
         {
-            explored = 0;
             current = mystack.top();
-            for(int idxV:adjlist[current])
+            printf("%d ",current);
+            vector<int>::reverse_iterator rit = adjlist[current].rbegin();
+            mystack.pop();
+            for(;rit!=adjlist[current].rend();++rit)
             {
-                if (checklist[idxV] == 0)
+                if (checklist[*rit] == 0)
                 {
-                    checklist[idxV] = 1;
-                    mystack.push(idxV);
-                    printf("%d ",idxV);
-                    explored = 1;
-                    break;
+                    checklist[*rit] = 1;
+                    mystack.push(*rit);
                 }
-            }
-            if (explored == 0)
-            {
-                mystack.pop();
             }
         }
         printf("\ndfs done.\n");
